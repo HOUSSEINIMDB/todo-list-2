@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="todoStyles.css">
+</head>
+
+<body class="Bd">
+    <center>
+        <form action="">
+            <div class="divs" id="principalDiv">
+                <h3><em>Todo List Version 2</em></h3>
+                <input id="ajoutDiv" class="inputAjout" placeholder="Ecrire l'activité"></input><br><br>
+                <button type="button" class="ajouterBouton" id="but1">Ajouter Activite</button>
+                <p class="paragraphs" id="par1"></p>
+            </div>
+        </form>
+    </center>
+    <script>
+       
+        
+        let ajout = document.getElementById('but1');
+        ajout.onclick = function () {
+            // event.preventDefault();
+            //ajoutons la zone
+            let newZone = document.createElement('div');
+            newZone.classList.add('jolieDiv');
+            let texte;
+            if (!document.getElementById('ajoutDiv').value.length)
+                alert("Ecrivez une activité");
+            else {
+                //Mise a jour de la taille de la division
+                let principalDiv = document.querySelector('.divs');
+                let newHeight = principalDiv.offsetHeight;
+                newHeight += 60;
+                document.getElementById("principalDiv").style.height = newHeight;
+
+                texte = document.createTextNode(document.getElementById('ajoutDiv').value);
+                document.getElementById("principalDiv").appendChild(document.createElement('br'));
+                document.getElementById("principalDiv").appendChild(newZone);
+                newZone.appendChild(texte);
+
+                let suppr = document.createElement('button');
+                suppr.innerHTML = "💣";
+                suppr.classList.add('supprBouton');
+                newZone.append(suppr);
+                //suppr.addEventListener('click', enleverDiv);
+                $('.supprBouton').click(function(){
+                        $(this).parent('div').remove();
+                })
+
+            }
+        }
+    </script>
+</body>
+
+</html>
